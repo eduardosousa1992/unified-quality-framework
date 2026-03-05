@@ -1,0 +1,50 @@
+﻿name: Unified QA Runtime - Autonomous Execution
+
+on:
+  push:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * *' # Execução diária para acompanhamento da diretoria
+
+jobs:
+  test:
+    name: Run Autonomous Tests & Business Metrics
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Quality Engine (Docker)
+        env:
+          SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
+        run: |
+          docker build -t unified-framework .
+          # O nome fixo ajuda na monitoria de custos de runner
+          docker run --name unified-qa-runtime -e SESSION_BASE64="$SESSION_BASE64" unified-framework
+
+      - name: Generate Executive Dashboard (Allure)
+        if: always()
+        run: |
+          npx allure generate allure-results --clean -o allure-report
+
+      - name: Deploy to Executive Portal (GitHub Pages)
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          destination_dir: reports

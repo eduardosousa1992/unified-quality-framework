@@ -1,0 +1,7 @@
+﻿<environment>
+    <parameter><key>Responsável</key><value>Eduardo Lima de Sousa (SDET Leader)</value></parameter>
+    <parameter><key>Engine</key><value>Playwright 1.42.0 (Chromium)</value></parameter>
+    <parameter><key>Infraestrutura</key><value>Docker Container (Alpine/Node20)</value></parameter>
+    <parameter><key>Ambiente</key><value>CI/CD Simulation - Unified Framework</value></parameter>
+    <parameter><key>Acadêmico</key><value>USP ESALQ | ESPM</value></parameter>
+</environment>
