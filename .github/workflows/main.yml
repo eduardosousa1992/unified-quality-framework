@@ -16,31 +16,31 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Install Allure & Dependencies
+        run: |
+          npm ci
+          npm install -g allure-commandline --save-dev
 
-      - name: Execute Quality Engine (Docker)
+      - name: Execute Tests (Native Runner)
         env:
           SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
         run: |
-          # Garantir que o diretório de auth existe antes de rodar o Docker
-          mkdir -p playwright/.auth
-          
-          # Injetar a sessão base64 se ela existir, senão o teste falhará propositalmente
+          mkdir -p allure-results
+          # Injetar sessão
           if [ -n "" ]; then
-            echo "Injetando sessão de governança..."
+            mkdir -p playwright/.auth
             echo "" | base64 -d > playwright/.auth/user.json
           fi
-          
-          # Rodar o framework via Docker
-          docker build -t unified-framework .
-          docker run --rm -v $(pwd)/allure-results:/app/allure-results unified-framework npm test || true
+          # Rodar testes nativamente para evitar problemas de permissão do Docker
+          npx playwright test || true
 
       - name: Generate Allure Report
         run: |
-          # Correção da sintaxe Allure 3.x
-          npx allure generate ./allure-results --clean -o ./allure-report
+          # Garantir que os metadados que criamos via código estejam presentes
+          cp allure-results/executor.json allure-results/executor.json || echo "{}" > allure-results/executor.json
+          npx allure generate allure-results --clean -o allure-report
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
