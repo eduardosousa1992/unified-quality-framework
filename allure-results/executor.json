@@ -1,8 +1,8 @@
-﻿{
-    "buildUrl":  "https://github.com/eduardosousa1992",
-    "name":  "Eduardo Lima de Sousa",
-    "reportUrl":  "https://www.linkedin.com/in/eduardolsousa",
-    "type":  "docker",
-    "reportName":  "Acessar Perfil Profissional (LinkedIn)",
-    "buildName":  "Unified-QA-Runtime | USP \u0026 ESPM"
+{
+  "name": "Eduardo Lima de Sousa",
+  "type": "github",
+  "buildName": "Unified Quality Framework Runtime",
+  "buildUrl": "https://github.com/eduardosousa1992/unified-quality-framework",
+  "reportUrl": "https://eduardosousa1992.github.io/unified-quality-framework/",
+  "reportName": "Executive QA Dashboard - GFT/Bradesco Context"
 }

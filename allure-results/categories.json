@@ -1,0 +1,22 @@
+[
+  {
+    "name": "🚨 Regressões de Negócio (Assertion Failures)",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*expected.*"
+  },
+  {
+    "name": "🌐 Instabilidade de Infraestrutura (Timeouts/Network)",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*timeout|.*network|.*500.*"
+  },
+  {
+    "name": "🔧 Erros de Configuração/Setup",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*not found|.*invalid session.*"
+  },
+  {
+    "name": "🧪 Testes Instáveis (Flaky Tests)",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": ".*flaky.*"
+  }
+]
