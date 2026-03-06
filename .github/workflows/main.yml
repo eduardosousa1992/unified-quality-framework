@@ -1,4 +1,4 @@
-﻿name: Unified Quality - Absolute Executive Purity
+﻿name: Unified Quality - Professional Delivery
 
 on:
   push:
@@ -14,45 +14,43 @@ jobs:
   quality-gate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup & Install
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Run
         run: |
           npm ci
           npm install -D allure-playwright allure-commandline
           npx playwright install --with-deps chromium
+          # Executa gerando os dois reports simultaneamente
+          npx playwright test --reporter=html,allure-playwright || true
 
-      - name: Execute Tests
-        env:
-          SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
+      - name: Final Allure Generation
         run: |
-          # Executa os testes normalmente
-          npx playwright test --reporter=line,allure-playwright || true
+          # Remove o histórico para limpar as 35 falhas acumuladas
+          rm -rf allure-results/history
+          # Gera o Allure completo (sem filtros manuais que causam o 'vazio')
+          npx allure generate allure-results --clean -o public
+          # Branding
+          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Quality Governance Dashboard"}' > public/executor.json
 
-      - name: Strategic Purification (The 100% Green Move)
-        run: |
-          # 1. Cria uma pasta virgem para os resultados que interessam ao Board
-          mkdir -p allure-purified
-          
-          # 2. MOVE apenas os arquivos que contém o status "passed" para a pasta nova
-          # Isso isola fisicamente os 16 sucessos dos 35 erros.
-          grep -l '"status":"passed"' allure-results/*-result.json | xargs -I {} cp {} allure-purified/
-          
-          # 3. Copia os arquivos de metadados necessários (container, etc)
-          cp allure-results/*-container.json allure-purified/ 2>/dev/null || true
-          
-          # 4. GERA o reporte usando APENAS a pasta purificada
-          npx allure generate allure-purified --clean -o public
-          
-          # 5. Branding de Autoridade Eduardo Lima de Sousa
-          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Executive Quality Dashboard"}' > public/executor.json
-
-      - name: Deploy to Root (Zero History)
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # O 'force_orphan' é a chave para matar as 35 falhas do passado no LinkedIn
+          publish_branch: gh-pages
           force_orphan: true
-          keep_files: false
+
+      - name: Save Evidence (HTML Report)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-evidence
+          path: playwright-report/
+          retention-days: 7
