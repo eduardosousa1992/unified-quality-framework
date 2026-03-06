@@ -1,0 +1,7 @@
+﻿rules:
+  - column: value
+    type: range
+    min: 0.01
+    max: 10000.00
+  - column: transaction_date
+    type: not_null
