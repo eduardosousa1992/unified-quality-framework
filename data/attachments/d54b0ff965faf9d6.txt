@@ -1,0 +1,4 @@
+
+[INFO] Iniciando preenchimento simulado (Visível)...
+
+[!] --- AGUARDANDO LOGIN MANUAL / 2FA NO NAVEGADOR ---

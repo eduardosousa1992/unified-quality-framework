@@ -1,0 +1,2 @@
+[AUDITORIA] URL Atual: https://github.com/
+[SUCESSO] Sessão Base64 hidratada e validada no Engine!

@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","1","Cenário 01: Deve atualizar a Bio do perfil (Validação de Estado)","chromium","2026-03-06","skipped","2026-03-06","Suíte de Expansão - Resiliência Máxima","expansion-suite.spec.ts","",""
+"","0","Cenário 04: Deve realizar busca global","chromium","2026-03-06","skipped","2026-03-06","Suíte de Expansão - Resiliência Máxima","expansion-suite.spec.ts","",""
+"","0","Deve validar o acesso via Runtime Engine","chromium","2026-03-06","skipped","2026-03-06","Validação de Sessão Stateless - GitHub","github-auth.spec.ts","",""
+"","0","Cenário 02: Deve acessar área de criação de repositórios","chromium","2026-03-06","skipped","2026-03-06","Suíte de Expansão - Resiliência Máxima","expansion-suite.spec.ts","",""
+"","155534","Autenticação e Captura de Sessão","setup","2026-03-06","failed","2026-03-06","","auth.setup.ts","",""
+"","1","Cenário 03: Deve validar área de chaves SSH","chromium","2026-03-06","skipped","2026-03-06","Suíte de Expansão - Resiliência Máxima","expansion-suite.spec.ts","",""
