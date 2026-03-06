@@ -1,0 +1,4 @@
+﻿quality_gates:
+  success_rate_min: 0.95
+  max_latency_p95: 5.0
+  data_health_threshold: 0.90
