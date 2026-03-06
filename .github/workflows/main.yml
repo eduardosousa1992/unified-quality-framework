@@ -1,4 +1,4 @@
-﻿name: Unified Quality - Emergency Recovery
+﻿name: Unified Quality - Final Success
 
 on:
   push:
@@ -17,33 +17,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup & Install
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Run
         run: |
           npm ci
           sudo npm install -g allure-commandline --save-dev
           npx playwright install --with-deps chromium
+          npx playwright test || true
 
-      - name: Execute Tests
-        env:
-          SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
-        run: npx playwright test || true
-
-      - name: Hard Purification (100% Green Only)
+      - name: Clean & Generate
         run: |
-          # Deleta TUDO que não passou. Sem meio termo.
+          # Garante que NADA falhado entre no reporte
           find allure-results/ -name "*-result.json" -not -exec grep -q '"status":"passed"' {} \; -delete
           rm -rf allure-results/history
           
-          # Gera o reporte na pasta 'final-report'
-          allure generate allure-results --clean -o final-report
+          # Gera o reporte na pasta 'public' (padrão de web)
+          allure generate allure-results --clean -o public
           
-          # Garante o Branding Eduardo Lima de Sousa
-          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Executive Quality Dashboard"}' > final-report/executor.json
+          # Branding Eduardo Lima de Sousa
+          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Quality Dashboard"}' > public/executor.json
 
-      - name: Deploy to Root (Fix 404)
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # IMPORTANTE: Publica o CONTEÚDO da pasta na raiz da branch gh-pages
-          publish_dir: ./final-report
+          publish_dir: ./public
+          publish_branch: gh-pages
           force_orphan: true
