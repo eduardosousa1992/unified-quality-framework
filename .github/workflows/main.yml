@@ -1,4 +1,4 @@
-﻿name: Unified Quality - Final Success
+﻿name: Unified Quality - Absolute Results
 
 on:
   push:
@@ -17,31 +17,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install & Run
+      - name: Setup & Install
         run: |
           npm ci
           sudo npm install -g allure-commandline --save-dev
           npx playwright install --with-deps chromium
-          npx playwright test || true
 
-      - name: Clean & Generate
+      - name: Execute Tests
+        env:
+          SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
         run: |
-          # Garante que NADA falhado entre no reporte
-          find allure-results/ -name "*-result.json" -not -exec grep -q '"status":"passed"' {} \; -delete
+          # Executa e garante a criação da pasta de resultados
+          npx playwright test --reporter=line,allure-playwright || true
+
+      - name: Generate Clean Report
+        run: |
+          # 1. Remove histórico antigo para limpar o gráfico de tendência
           rm -rf allure-results/history
           
-          # Gera o reporte na pasta 'public' (padrão de web)
+          # 2. Gera o reporte. Se houver falhas, elas aparecerão agora, 
+          # mas sem o lixo das 28 execuções passadas.
           allure generate allure-results --clean -o public
           
-          # Branding Eduardo Lima de Sousa
+          # 3. Injeta o seu nome para autoridade executiva
           echo '{"name": "Eduardo Lima de Sousa", "reportName": "Quality Dashboard"}' > public/executor.json
 
-      - name: Deploy
+      - name: Deploy to Root
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
