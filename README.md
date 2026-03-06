@@ -44,3 +44,11 @@ uqf validate data.csv --rules rules.yaml
   <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-Click-blue?style=flat-square&logo=linkedin" /></a>
   <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-Profile-black?style=flat-square&logo=github" /></a>
 </p>
+## 📊 2. Example Output (Reporting)
+O framework automatiza a geração de evidências para auditoria e governança:
+
+### **Relatório HTML**
+Ao executar a validação, o UQF gera um dashboard em ./reports/quality-report.html contendo:
+* **Data Health Score:** Índice percentual de integridade.
+* **Failure Distribution:** Detalhamento de erros por regra e coluna.
+* **Audit Trail:** Logs formatados para conformidade.
