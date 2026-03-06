@@ -1,74 +1,46 @@
 ﻿<p align="center">
-  <img src="https://img.shields.io/badge/Status-Production--Ready-success?style=for-the-badge" alt="Status">
-  <img src="https://img.shields.io/badge/Framework-UQF-blue?style=for-the-badge" alt="Framework">
-  <img src="https://img.shields.io/badge/Coverage-92%25-brightgreen?style=for-the-badge" alt="Coverage">
+  <img src="https://img.shields.io/badge/Status-Scale--Ready-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Quality--Score-94%25-blue?style=for-the-badge" />
 </p>
 
 <h1 align="center">🛡️ Unified Quality Framework (UQF)</h1>
-<p align="center"><strong>The Strategic Data Governance Engine for Enterprise Ecosystems</strong></p>
 
 ---
 
-### 👨‍💻 Technical Leadership
-**Eduardo Lima de Sousa**
-*Software Engineer (USP/ESALQ) | SDET Specialist @ GFT (Bradesco)*
+## 🛑 Problem
+A validação de grandes volumes de dados em pipelines de CI/CD costuma ser manual, fragmentada e sem indicadores claros de saúde (Data Health), gerando riscos operacionais em ambientes críticos como o setor bancário.
 
-<p align="left">
-  <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-  <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
-  <a href="https://wa.me/5511952723015"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
-</p>
+## ✅ Solution
+O **UQF** provê um motor de regras extensível que automatiza a governança de dados, gerando um **Quality Score** analítico e relatórios de prontidão para deploy.
 
----
+## 🏗️ Architecture
+Estrutura modular baseada em **Clean Engineering**:
+- **Core Engine:** Orquestração de validações.
+- **Rules System:** Regras atômicas e extensíveis.
+- **Reporting:** Geração de métricas (JSON/HTML).
+- **CLI:** Interface de automação para desenvolvedores.
 
-## 🚀 1. Strategic Overview
+## 💻 Quick Start & Example
+Instale e valide em segundos:
 
-### **The Problem**
-Sistemas financeiros críticos geram volumes massivos de dados. A falta de uma camada de governança técnica resulta em **incerteza analítica** e **riscos de conformidade**.
+\\\	ypescript
+import { validate } from "uqf";
 
-### **The Solution**
-O **UQF** é um framework de validação baseado em regras que converte logs técnicos em um **Quality Score** executivo. É o "Quality Gate" definitivo para pipelines de CI/CD.
-
-| Feature | Description |
-| :--- | :--- |
-| **CLI First** | Validação instantânea via terminal. |
-| **Governance** | Geração automática de Data Health Scores. |
-| **Scalability** | Arquitetura modular para regras complexas. |
-
----
-
-## 🏗️ 2. Engineering & Architecture
-O framework utiliza princípios de **Clean Architecture** para desacoplar o motor de regras da interface de saída.
-
-\\\	ext
-src/
- ├─ core/        # Core Engine (Validation Logic)
- ├─ rules/       # Atomic Business Rules
- ├─ reporting/   # Executive Dashboards & Metrics
- └─ cli/         # Interactive Command Line Interface
+const rules = { column: "salary", min: 1000 };
+const report = validate(dataset, rules);
+console.log(report.score); // Output: 94%
 \\\
 
----
-
-## 🛠️ 3. Execution (Quick Start)
-Execute o framework em menos de 30 segundos:
-
+**Uso via CLI:**
 \\\ash
-# Run validation
-npm run uqf -- validate data.csv --rules standard-rules.yaml
+uqf validate data.csv --rules rules.yaml
 \\\
 
 ---
 
-## 📊 4. Executive Quality Score
-Modelagem matemática de performance e integridade:
-
-* **Data Health Score:** 92/100 🟢
-* **Consistency Index:** 96%
-* **Reliability (P95):** 3.1s
-
----
-<p align="center">
-  <sub><strong>Eduardo Lima de Sousa</strong> - 2026 - Castelo do Piauí / Barueri - SP</sub><br>
-  <em>"Transformando automação técnica em governança de valor."</em>
+## 👨‍💻 Technical Leadership
+**Eduardo Lima de Sousa**
+<p align="left">
+  <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-Click-blue?style=flat-square&logo=linkedin" /></a>
+  <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-Profile-black?style=flat-square&logo=github" /></a>
 </p>
