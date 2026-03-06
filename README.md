@@ -1,62 +1,67 @@
 ﻿<p align="center">
-  <img src="https://img.shields.io/badge/Status-Scale--Ready-success?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Quality--Score-94%25-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Version-1.1.0-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Quality--Score-94%25-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Pipeline-Passing-brightgreen?style=for-the-badge" />
 </p>
 
 <h1 align="center">🛡️ Unified Quality Framework (UQF)</h1>
+<p align="center"><strong>Engine de Governança de Dados e Validação de Contratos de Alta Performance</strong></p>
 
 ---
 
-## 🛑 Problem
-A validação de grandes volumes de dados em pipelines de CI/CD costuma ser manual, fragmentada e sem indicadores claros de saúde (Data Health), gerando riscos operacionais em ambientes críticos como o setor bancário.
+## 🚀 1. Visão Estratégica
+O **UQF** é um framework modular desenvolvido para mitigar riscos operacionais e garantir a integridade de dados em ecossistemas financeiros. Ele transforma logs técnicos de validação em **KPIs de Qualidade**, permitindo decisões baseadas em dados (Data-Driven Decisions).
 
-## ✅ Solution
-O **UQF** provê um motor de regras extensível que automatiza a governança de dados, gerando um **Quality Score** analítico e relatórios de prontidão para deploy.
+## 🏗️ 2. Arquitetura de Engenharia
+Desenvolvido sob princípios de **Clean Architecture** e **Extensibilidade**:
 
-## 🏗️ Architecture
-Estrutura modular baseada em **Clean Engineering**:
-- **Core Engine:** Orquestração de validações.
-- **Rules System:** Regras atômicas e extensíveis.
-- **Reporting:** Geração de métricas (JSON/HTML).
-- **CLI:** Interface de automação para desenvolvedores.
+* **Core Engine:** Orquestrador de validações atômicas.
+* **Plugin System:** Interface \QualityRule\ para criação de regras customizadas.
+* **Analytic Reporting:** Motor de métricas para cálculo de Score (Completeness, Validity).
+* **CI/CD Ready:** Integração nativa com GitHub Actions para Quality Gates.
 
-## 💻 Quick Start & Example
-Instale e valide em segundos:
 
-\\\	ypescript
-import { validate } from "uqf";
 
-const rules = { column: "salary", min: 1000 };
-const report = validate(dataset, rules);
-console.log(report.score); // Output: 94%
-\\\
+## 💻 3. Interface de Comando (CLI)
+Simplicidade e robustez no terminal:
 
-**Uso via CLI:**
 \\\ash
-uqf validate data.csv --rules rules.yaml
+# Instalação das dependências
+npm install
+
+# Executando uma validação real
+uqf validate ./examples/csv-validation/transactions.csv
 \\\
+
+**Saída esperada:**
+\\\	ext
+🛡️  UNIFIED QUALITY FRAMEWORK (UQF) v1.1
+-------------------------------------------
+🔍 Analisando: transactions.csv
+
+Dataset Quality Report
+----------------------
+Completeness: 100% | Validity: 94% | Consistency: 88%
+
+Data Quality Score: 94%
+✅ Relatório visual gerado com sucesso em ./reports/quality-report.html
+\\\
+
+## 🔌 4. Casos de Uso (Examples)
+O repositório inclui cenários prontos para uso:
+* **/csv-validation**: Validação de arquivos de transações financeiras.
+* **/api-validation**: Garantia de contrato para payloads JSON de API.
 
 ---
 
 ## 👨‍💻 Technical Leadership
 **Eduardo Lima de Sousa**
-<p align="left">
-  <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-Click-blue?style=flat-square&logo=linkedin" /></a>
-  <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-Profile-black?style=flat-square&logo=github" /></a>
+*Software Engineer (USP/ESALQ) | SDET Specialist @ GFT (Bradesco)*
+
+<p left="left">
+  <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin" /></a>
+  <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-Projects-black?style=flat-square&logo=github" /></a>
 </p>
-## 📊 2. Example Output (Reporting)
-O framework automatiza a geração de evidências para auditoria e governança:
 
-### **Relatório HTML**
-Ao executar a validação, o UQF gera um dashboard em ./reports/quality-report.html contendo:
-* **Data Health Score:** Índice percentual de integridade.
-* **Failure Distribution:** Detalhamento de erros por regra e coluna.
-* **Audit Trail:** Logs formatados para conformidade.
-## 📊 2. Example Output (Reporting)
-O framework automatiza a geração de evidências para auditoria e governança:
-
-### **Relatório HTML**
-Ao executar a validação, o UQF gera um dashboard em ./reports/quality-report.html contendo:
-* **Data Health Score:** Índice percentual de integridade.
-* **Failure Distribution:** Detalhamento de erros por regra e coluna.
-* **Audit Trail:** Logs formatados para conformidade.
+---
+<p align="center"><sub>"Transformando automação técnica em governança de valor estratégico."</sub></p>
