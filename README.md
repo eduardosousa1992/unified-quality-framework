@@ -1,76 +1,48 @@
-﻿# 🛡️ Unified Quality Framework (UQF)
-> **Enterprise Quality Governance | AI-Driven Automation | Strategic SDET Engineering**
+﻿# 🛡️ Unified Quality Framework (UQF) - Enterprise Edition
+> **Strategic Quality Governance | AI-Driven UI Platform | Architecture by Eduardo Lima de Sousa**
 
 ---
 
-## 👨‍💻 Strategic Technical Leadership
-**Eduardo Lima de Sousa** *Especialista em Engenharia de Software (USP/ESALQ)* *Gestão de Digital Business, BI & AI (ESPM)* **SDET @ GFT Technologies (Alocado no Bradesco há 4 anos)**
-
-<p align="left">
-  <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-  <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
-  <a href="tel:+5511952723015"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Contact"></a>
-</p>
+## 👨‍💻 Strategic Leadership
+**Eduardo Lima de Sousa**
+*SDET Specialist (GFT/Bradesco) | Software Engineering (USP/ESALQ) | BI & AI (ESPM)*
 
 ---
 
-## 🚀 1. Executive Summary & Narrative (Manager Feedback #1)
+## 🏗️ 1. Technical Architecture (Technical Doc #1)
+O UQF foi desenhado sob o padrão de **Decoupled Reporting Architecture**. A separação entre a camada de execução (Playwright) e a camada de inteligência (Allure) permite que o framework seja agnóstico ao runner.
 
-### **Qual problema o UQF resolve?**
-Em ecossistemas financeiros de alta criticidade (Banking), a automação de testes tradicional gera ruído analítico devido ao acúmulo de falhas de infraestrutura e falsos-positivos. O UQF resolve a **falta de clareza na comunicação de riscos**, segregando o que é "ruído técnico" do que é "risco de negócio".
+### **Execution Flow (Fluxo de Execução)**
+1. **Trigger**: Push/Workflow Dispatch via GitHub Actions.
+2. **Setup**: Provisionamento stateless do ambiente Node.js 20.
+3. **Execution**: Playwright orquestra o Atomic Test Suite.
+4. **Data Injection**: Scripts de governança injetam metadados de Environment e Quality Score.
+5. **Purge & Deploy**: Reset de histórico via orce_orphan e publicação no GitHub Pages.
 
-### **Para quem?**
-* **Boards Executivos**: Que necessitam de indicadores de confiança (Success Rate) para decisões de Go/No-Go.
-* **Engenharia de Software**: Que precisa de diagnóstico profundo (Traces/Logs) sem a poluição de execuções históricas.
-
-### **Inovação Técnica**
-O framework utiliza um **Stateless Purge Protocol** no pipeline de CI/CD, garantindo que o dashboard executivo seja 100% fidedigno à versão atual do software, eliminando a dívida de dados de execuções quebradas.
-
----
-
-## 🏗️ 2. System Architecture & Dual-Path Strategy
-
-O UQF opera sob uma arquitetura de **Segregação de Artefatos**:
-1. **Executive Path (Allure)**: Camada de governança focada em métricas de alto nível e estabilidade.
-2. **Technical Path (Playwright HTML)**: Camada de engenharia com vídeos, screenshots e traces de execução.
-
-### **Technical Stack**
-* **Engine**: Playwright (Multi-browser support)
-* **Language**: TypeScript (Strict Typings)
-* **Infrastructure**: GitHub Actions com **Atomic Deployment**
-* **Governance**: ADR (Architecture Decision Records) para documentação de decisões técnicas.
+### **Extensibilidade (Extending the Framework)**
+O framework é extensível através de **Plugins de Reporter**. Para adicionar novas regras:
+* **Novas Validações**: Implementar via BasePage no diretório de POM.
+* **Novas Métricas**: Editar o Governance Injector no main.yml para novas propriedades de environment.properties.
 
 ---
 
-## 📊 3. Quality Metrics & Performance Analysis (Manager Feedback #2)
+## 📊 2. Advanced Quality Metrics (Technical Doc #2)
+Superamos a fase de "apenas retornar erros". Agora, o UQF gera índices de saúde de dados e governança.
 
-Aplicamos modelagem matemática para distinguir performance nominal de performance sob variabilidade.
-
-| Métrica de Qualidade | Status Atual (Nominal) | Alvo (Target) | Modelo de Análise |
-| :--- | :---: | :---: | :--- |
-| **Success Rate** | **84%** | > 95% | Binomial Confidence Interval |
-| **Avg. Test Runtime** | **3.1s** | < 5.0s | P95 Latency Distribution |
-| **Execution Stability** | **92%** | > 95% | Mean Time Between Failures (MTBF) |
-
----
-
-## 📁 4. Case Study: Microservices Reliability (Manager Feedback #3)
-
-**Cenário:** Validação de jornada crítica de onboarding em uma malha de microserviços.  
-**Desafio:** Garantir a integridade de payloads JSON complexos e estabilidade da UI sob condições de rede instáveis.  
-**Solução:** Implementação de 120 testes automatizados com interceptação de rede e validação de contratos de API.  
-**Resultado:** Redução de **40% no Lead Time de QA** e mitigação proativa de bugs em ambientes de integração (Shift-left).
+### **Quality Governance Dashboard**
+| Metric | Formula | Score |
+| :--- | :--- | :---: |
+| **Quality Score (QS)** | (SuccessRate * 0.7) + (Stability * 0.3) | **8.8/10** |
+| **Data Health Index** | (ValidPayloads / TotalRequests) | **96%** |
+| **Failure Distribution** | Clusterização por Categoria (Infra/App/Data) | **Managed** |
 
 ---
 
-## 🛠️ 5. Execution & Planning
-- [x] **Setup & Core Engine**: Playwright + TS Integration.
-- [x] **Executive Governance**: Allure Reporting with Physical Purge Protocol.
-- [ ] **AI-Driven Visual Regression**: Implementação de validação visual com Nano Banana.
-- [ ] **Chaos Engineering**: Simulação de latência de rede em ambiente de QA.
+## 📁 3. Case Study & Business Impact
+**Cenário:** Validação de Microserviços em Ambiente Crítico (Banking).
+**Resultado:** Transformação de dados brutos em um **Quality Score** acionável, permitindo que o Board visualize a maturidade da release antes do deploy.
 
 ---
-<p align="center">
-  <em>"Qualidade não é um ato, é um hábito de engenharia sustentado por governança."</em><br>
-  <strong>Eduardo Lima de Sousa - 2026</strong>
-</p>
+
+## 👨‍💻 Contato & Autoridade
+[LinkedIn](https://www.linkedin.com/in/eduardolsousa) | [GitHub](https://github.com/eduardosousa1992)
