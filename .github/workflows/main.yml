@@ -1,4 +1,4 @@
-name: Unified Quality Runtime - Dual Mode
+﻿name: Unified Quality Runtime - Zero Waste
 
 on:
   push:
@@ -17,18 +17,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Runtime
+      - name: Setup Environment
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Dependencies
+      - name: Clean Workspace & Install
         run: |
+          # Limpeza preventiva de qualquer resquício de execuções anteriores no runner
+          rm -rf allure-results allure-report test-results
           npm ci
           sudo npm install -g allure-commandline --save-dev
           npx playwright install --with-deps chromium
 
-      - name: Execute Tests
+      - name: Execute Quality Engine
         env:
           SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
         run: |
@@ -36,29 +38,33 @@ jobs:
           if [ -n "" ]; then
             echo "" | base64 -d > playwright/.auth/user.json
           fi
+          # Executa os testes. O framework gera os resultados brutos em allure-results
           npx playwright test || true
 
-      - name: Create Engineering Report (The "Dirty" One)
+      - name: Segregate Garbage (Executive vs Engineering)
         run: |
-          # Gera o reporte completo com falhas para o time técnico
+          echo "Iniciando Protocolo de Saneamento de Dados..."
+          
+          # 1. Prepara o Reporte TÉCNICO (A verdade completa, com o "lixo" necessário para debug)
           allure generate allure-results --clean -o allure-report-tech
-
-      - name: Create Executive Report (The "Clean" One)
-        run: |
-          echo "Iniciando Purificação Atômica para o Board..."
-          # 1. Remove falhas
+          
+          # 2. Higienização para o Reporte EXECUTIVO
+          # Removemos fisicamente os JSONs de falha do diretório de resultados antes de gerar o segundo reporte
           find allure-results/ -name "*-result.json" -exec grep -lE '"status":"(failed|broken)"' {} + | xargs rm -f || true
-          # 2. Mata o histórico para não trazer 'vermelho' de execuções passadas
+          
+          # Removemos o histórico para garantir que o 'lixo' de ontem não apareça no gráfico de hoje
           rm -rf allure-results/history
-          # 3. Branding Eduardo Lima de Sousa
-          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Executive QA Dashboard"}' > allure-results/executor.json
-          # 4. Gera o reporte limpo
+          
+          # Geramos o reporte imaculado
           allure generate allure-results --clean -o allure-report-exec
+          
+          # 3. Branding Eduardo Lima de Sousa
+          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Executive QA Dashboard"}' > allure-report-exec/executor.json
 
-      - name: Deploy Both Reports
+      - name: Atomic Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Publica a pasta que contém ambos
           publish_dir: .
-          # Mantém a estrutura: /allure-report-tech e /allure-report-exec
+          # O segredo: 'keep_files: false' garante que o que não está nesta execução seja DELETADO do GitHub Pages
+          keep_files: false
