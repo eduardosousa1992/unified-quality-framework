@@ -52,3 +52,11 @@ Ao executar a validação, o UQF gera um dashboard em ./reports/quality-report.h
 * **Data Health Score:** Índice percentual de integridade.
 * **Failure Distribution:** Detalhamento de erros por regra e coluna.
 * **Audit Trail:** Logs formatados para conformidade.
+## 📊 2. Example Output (Reporting)
+O framework automatiza a geração de evidências para auditoria e governança:
+
+### **Relatório HTML**
+Ao executar a validação, o UQF gera um dashboard em ./reports/quality-report.html contendo:
+* **Data Health Score:** Índice percentual de integridade.
+* **Failure Distribution:** Detalhamento de erros por regra e coluna.
+* **Audit Trail:** Logs formatados para conformidade.
