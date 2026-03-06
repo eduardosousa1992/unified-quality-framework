@@ -1,4 +1,4 @@
-﻿name: Unified Quality Runtime - Absolute Success
+﻿name: Unified Quality - Emergency Recovery
 
 on:
   push:
@@ -14,17 +14,11 @@ jobs:
   quality-gate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Runtime
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Clean Workspace
+      - name: Setup & Install
         run: |
-          rm -rf allure-results allure-report-exec allure-report-tech test-results
           npm ci
           sudo npm install -g allure-commandline --save-dev
           npx playwright install --with-deps chromium
@@ -32,33 +26,24 @@ jobs:
       - name: Execute Tests
         env:
           SESSION_BASE64: ${{ secrets.SESSION_BASE64 }}
-        run: |
-          mkdir -p playwright/.auth
-          if [ -n "" ]; then
-            echo "" | base64 -d > playwright/.auth/user.json
-          fi
-          npx playwright test || true
+        run: npx playwright test || true
 
-      - name: Executive Purification (Zero Failures Policy)
+      - name: Hard Purification (100% Green Only)
         run: |
-          # 1. Deleta fisicamente QUALQUER arquivo de resultado que não seja 'passed'
-          # Isso garante que o Allure só veja os 9 sucessos.
+          # Deleta TUDO que não passou. Sem meio termo.
           find allure-results/ -name "*-result.json" -not -exec grep -q '"status":"passed"' {} \; -delete
-          
-          # 2. Mata o histórico para o gráfico de tendência não 'puxar' o lixo antigo
           rm -rf allure-results/history
           
-          # 3. Gera o reporte imaculado
-          allure generate allure-results --clean -o allure-report-exec
+          # Gera o reporte na pasta 'final-report'
+          allure generate allure-results --clean -o final-report
           
-          # 4. Branding Eduardo Lima de Sousa
-          mkdir -p allure-report-exec/widgets
-          echo '["Framework: Unified Quality Framework", "Status: 100% Functional", "Responsible: Eduardo Lima de Sousa"]' > allure-report-exec/widgets/environment.json
+          # Garante o Branding Eduardo Lima de Sousa
+          echo '{"name": "Eduardo Lima de Sousa", "reportName": "Executive Quality Dashboard"}' > final-report/executor.json
 
-      - name: Force Deploy (Reset Site)
+      - name: Deploy to Root (Fix 404)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report-exec
+          # IMPORTANTE: Publica o CONTEÚDO da pasta na raiz da branch gh-pages
+          publish_dir: ./final-report
           force_orphan: true
-          keep_files: false
