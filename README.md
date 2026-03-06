@@ -1,5 +1,5 @@
 ﻿<p align="center">
-  <img src="https://raw.githubusercontent.com/playwright-community/playwright-logos/main/playwright-logo.png" width="120" alt="Playwright Logo">
+  <img src="https://playwright.dev/img/playwright-logo.svg" width="100" alt="Playwright Logo">
 </p>
 
 <h1 align="center">🛡️ Unified Quality Framework</h1>
@@ -10,9 +10,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Playwright-v1.58-28a745?style=for-the-badge&logo=playwright" alt="Playwright">
-  <img src="https://img.shields.io/badge/TypeScript-5.0-3178c6?style=for-the-badge&logo=typescript" alt="TypeScript">
-  <img src="https://img.shields.io/badge/GitHub_Actions-Success-2088FF?style=for-the-badge&logo=github-actions" alt="GitHub Actions">
+  <a href="https://github.com/eduardosousa1992/unified-quality-framework/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/eduardosousa1992/unified-quality-framework/main.yml?branch=main&style=for-the-badge&logo=github-actions&label=Quality%20Gate" alt="Quality Gate">
+  </a>
+  <img src="https://img.shields.io/badge/TypeScript-5.0-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Playwright-v1.58-28a745?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright">
 </p>
 
 ---
@@ -37,29 +39,12 @@ Acesse os reportes em tempo real através da infraestrutura GitHub Pages:
 
 ---
 
-## 🏗️ Arquitetura do Sistema
-
-O framework foi construído sobre três pilares de sustentabilidade:
-
-1.  **Resiliência Financeira:** Bypass de segurança via injeção de SESSION_BASE64 para fluxos bancários complexos.
-2.  **Escalabilidade Matemática:** Modelagem de performance baseada em carga distribuída e mitigação de latência.
-3.  **Technical Governance:** Documentação via ADR (Architecture Decision Records) e Shift-Left absoluto.
-
-### 🛠️ Tech Stack & Tooling
-* **Core:** [Playwright](https://playwright.dev/) + TypeScript.
-* **Reports:** Allure 3.x com filtros dinâmicos de status.
-* **CI/CD:** GitHub Actions com Runner Nativo otimizado.
-* **Design Pattern:** Page Object Model (POM) + Factory Pattern.
-
----
-
 ## 👨‍💻 Eduardo Lima de Sousa
-**Especialista em Engenharia de Software (USP) & QA Automation Engineer (GFT)** *Conectando qualidade, dados, segurança e impacto de negócio.*
+**Especialista em Engenharia de Software (USP) & QA Automation Engineer (GFT)**
 
 <p align="left">
   <a href="https://www.linkedin.com/in/eduardolsousa"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://github.com/eduardosousa1992"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
-  <a href="tel:+5511952723015"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
 </p>
 
 ---
